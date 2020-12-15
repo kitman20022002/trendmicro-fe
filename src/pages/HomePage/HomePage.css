@@ -1,0 +1,54 @@
+*::after, *::before {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+/* Why still grey even out the body */
+body {
+  box-sizing: border-box;
+  font-family: sans-serif;
+  background-color: white;
+}
+
+.weather, .root, body {
+  height: 100%;
+}
+
+.weather {
+  text-align: center;
+  border-top: 1px solid;
+  height: 100vh;
+  min-height: 800px;
+  display: flex;
+  align-items: center;
+  background: url('http://i.hizliresim.com/v4Qykv.png') no-repeat center center fixed;
+}
+
+a:visited, a:focus, a:active, a {
+  text-decoration: none !important;
+}
+
+@media only screen and (max-width: 830px) {
+  .weather, .root {
+    position: relative;
+    min-height: 1300px;
+  }
+
+  .weather {
+    padding-bottom: 30px;
+    height: unset;
+
+  }
+
+  .App {
+    padding: 50px 0 50px 0;
+    position: relative;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .weather, .root {
+    min-height: 1600px;
+  }
+}
