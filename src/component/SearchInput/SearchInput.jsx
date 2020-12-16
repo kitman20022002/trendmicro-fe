@@ -50,7 +50,7 @@ export default class SearchInput extends React.Component {
             {data.map((item) => (
               <button
                 type="button"
-                key={item}
+                key={item.woeid}
                 onMouseDown={() => this.selectCountry(item.woeid)}
               >
                 {item.title}
