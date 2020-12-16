@@ -11,9 +11,15 @@ Didn't have time to do but however I aware of this issue
 - [ ] Use .env.example
 - [ ] props validation (If use TypeScript it will solve the problem, but didn't have time)
 
-- [ ] Javascript (ES6)
-- [ ] Testing (React testing framework)
-- [ ] Prettier, ESLint 
+- [x] Display the weather forecast for the next four days of the given location
+- [x] General description of the weather
+- [x] Minimum and maximum temperature
+- [x] Wind speed
+- [x] Create a simple form that takes a location as an input parameter.
+- [x] Javascript (ES6)
+- [x] Add tests (React testing framework)
+- [x] Prettier, ESLint 
+- [x] Ensure that the application outputs production-ready artifacts
 
 
 
