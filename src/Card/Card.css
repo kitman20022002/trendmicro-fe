@@ -1,0 +1,13 @@
+.detail-info-container{
+  padding: 50px 0px 50px 40px;
+  position: relative;
+}
+.card__main{
+  width: 100%;
+  max-width: 1580px;
+  text-align: center;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+  margin: 60px auto 0 auto;
+}

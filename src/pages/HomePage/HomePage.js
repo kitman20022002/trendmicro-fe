@@ -3,6 +3,8 @@ import './HomePage.css'
 import Header from "../../component/Header/Header";
 import Loader from "../../component/Loader/Loader";
 import Cards from "../../Card/Cards";
+import {getCities, getWeather} from "../../api/weatherapi";
+
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -17,16 +19,22 @@ class HomePage extends React.Component {
   }
 
   // eslint-disable-next-line react/sort-comp
-  handleSearchPress = async () => {
-
+  handleSearchPress = async (e) => {
+    const q = e.target.value.toLowerCase();
+    const response = await getCities(q).catch(() => {
+      this.setState({error: true});
+    });
+    this.setState({cityData: response.data.data, error: false, searchKey: q});
   };
 
   async componentDidMount() {
     // GEO Location Logic here
   }
 
-  selectCountry = async () => {
-
+  selectCountry = async (cityID) => {
+    this.setState({isLoaded: false})
+    const result = await getWeather(cityID);
+    this.setState({weatherData: result.data.data, isLoaded: true})
   }
 
   render() {

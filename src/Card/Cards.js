@@ -1,13 +1,20 @@
 import React from "react";
+import Spinner from "../component/UI/Spinner";
+import Forecast from "../component/Forecast/Forecast";
 import './Card.css';
-// eslint-disable-next-line no-unused-vars
+
 function Cards(props) {
-  return (
-    // eslint-disable-next-line react/jsx-no-comment-textnodes
-    <main className="card__main fade-in">
-      // TODO : Render weather
-    </main>
-  );
+  let data = (<Spinner />);
+  if (props.isLoaded) {
+    data = (
+      <main className="card__main fade-in">
+        <div className="flex detail-info-container flex-warp">
+          <Forecast data={props.data} />
+        </div>
+      </main>
+    );
+  }
+  return data;
 }
 
 export default Cards;
