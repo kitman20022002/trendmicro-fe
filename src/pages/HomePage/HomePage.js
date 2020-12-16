@@ -14,17 +14,28 @@ class HomePage extends React.Component {
       cityData: [],
       weatherData: [],
       error: false,
-      searchKey: 'sydney'
+      searchKey: 'sydney',
+      cacheData: []
     };
   }
 
   // eslint-disable-next-line react/sort-comp
   handleSearchPress = async (e) => {
-    const q = e.target.value.toLowerCase();
-    const response = await getCities(q).catch(() => {
+    try {
+      const {cacheData} = this.state;
+      const q = e.target.value.toLowerCase();
+      let response;
+      if (cacheData[q]) {
+        response = cacheData[q];
+      } else {
+
+        response = await getCities(q);
+
+      }
+      this.setState({cityData: response.data.data, error: false, searchKey: q});
+    } catch {
       this.setState({error: true});
-    });
-    this.setState({cityData: response.data.data, error: false, searchKey: q});
+    }
   };
 
   async componentDidMount() {
@@ -33,8 +44,14 @@ class HomePage extends React.Component {
 
   selectCountry = async (cityID) => {
     this.setState({isLoaded: false})
-    const result = await getWeather(cityID);
-    this.setState({weatherData: result.data.data, isLoaded: true})
+    let result;
+    try {
+      result = await getWeather(cityID);
+      this.setState({weatherData: result.data.data, isLoaded: true})
+    } catch {
+      this.setState({error: true});
+    }
+
   }
 
   render() {
