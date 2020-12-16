@@ -27,7 +27,7 @@
       "off"
     ],
     "react/prop-types": [
-      "warn"
+      "off"
     ],
     "no-return-assign": [
       "off"

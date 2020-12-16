@@ -34,7 +34,7 @@ class HomePage extends React.Component {
       }
       this.setState({cityData: response.data.data, error: false, searchKey: q});
     } catch {
-      this.setState({error: true});
+      this.setState({error: true, isLoaded: true});
     }
   };
 
@@ -49,14 +49,14 @@ class HomePage extends React.Component {
       result = await getWeather(cityID);
       this.setState({weatherData: result.data.data, isLoaded: true})
     } catch {
-      this.setState({error: true});
+      this.setState({error: true, isLoaded: true});
     }
 
   }
 
   render() {
     const {cityData, weatherData, isLoaded, searchKey, error} = this.state;
-    const showCard = error ? <p className="error">ERROR NOT CITY</p> : (
+    const showCard = error ? <p className="error">SERVER ERROR</p> : (
       <Cards
         data={weatherData}
         isLoaded={isLoaded}
