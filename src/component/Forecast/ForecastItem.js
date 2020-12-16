@@ -27,7 +27,7 @@ const dayMapping = {
 const ForecastItem = (props) => {
   const {data} = props;
   return (
-    <div className="forecast-item__container align--center">
+    <div className="forecast-item__container align--center" data-testid={data.id}>
       <h2 className="day__text">
         {dayMapping[moment(data.applicable_date).day()]}
       </h2>

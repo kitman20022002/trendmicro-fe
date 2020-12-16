@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class TextField extends Component {
 
   render() {
-    const { name, value, onChange,placeholder, classes} = this.props;
+    const { name, value, onChange,placeholder, classes,dataTestID} = this.props;
     return (
       <>
         <div className="input__container">
@@ -15,6 +15,7 @@ class TextField extends Component {
             placeholder={placeholder}
             className={classes}
             autoComplete="off"
+            data-testid={dataTestID}
           />
         </div>
       </>

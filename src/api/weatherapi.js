@@ -1,4 +1,8 @@
 import axios from "axios";
+import apis from '../config/apis';
 
-export const getWeather = (city) => axios.get(`http://localhost:8000/api/v1/weathers?id=${city}`);
-export const getCities = (city) => axios.get(`http://localhost:8000/api/v1/cities?city=${city}`);
+export const getWeather = (city) =>
+  axios.get(`${apis.API_URL + apis.VERSION}/weathers?id=${city}`);
+
+export const getCities = (city) =>
+  axios.get(`${apis.API_URL + apis.VERSION}/cities?city=${city}`);

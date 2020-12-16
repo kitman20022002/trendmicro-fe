@@ -2,7 +2,7 @@ import React from 'react';
 import './HomePage.css'
 import Header from "../../component/Header/Header";
 import Loader from "../../component/Loader/Loader";
-import Cards from "../../Card/Cards";
+import Cards from "../../component/Card/Cards";
 import {getCities, getWeather} from "../../api/weatherapi";
 
 

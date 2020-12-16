@@ -9,7 +9,7 @@ const Forecast = (props) => {
   return (
     <section className="card__forecasts__container flex space-between flex-warp">
       {data.consolidated_weather.map((item) =>
-        <ForecastItem key={item.woeid} data={item} />
+        <ForecastItem key={item.id} data={item} />
       )}
     </section>
   );

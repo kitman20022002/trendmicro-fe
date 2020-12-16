@@ -35,14 +35,14 @@ export default class SearchInput extends React.Component {
       <div className="search">
         <TextField
           name="state"
-          placeholder="Search State or territory"
+          placeholder="Search City"
           label="State"
           onChange={this.filterList}
           error={error}
           value={value}
           onBlur={this.toggleShow}
           onFocus={this.toggleShow}
-          data-testid="state"
+          dataTestID="city"
           classes="search-bar"
         />
         {data && show && (
