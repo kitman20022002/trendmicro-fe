@@ -1,6 +1,6 @@
 import React from 'react';
 import './HomePage.css'
-import {throttle} from "lodash";
+import {debounce} from "lodash";
 import Header from "../../component/Header/Header";
 import Loader from "../../component/Loader/Loader";
 import Cards from "../../component/Card/Cards";
@@ -18,7 +18,7 @@ class HomePage extends React.Component {
       searchKey: 'sydney',
       cacheData: []
     };
-    this.handleSearchDebounce = throttle(this.handleSearchPress, 1000);
+    this.handleSearchDebounce = debounce(this.handleSearchPress, 1000);
   }
 
   // eslint-disable-next-line react/sort-comp
