@@ -1,5 +1,6 @@
 import React from 'react';
 import './HomePage.css'
+import {throttle} from "lodash";
 import Header from "../../component/Header/Header";
 import Loader from "../../component/Loader/Loader";
 import Cards from "../../component/Card/Cards";
@@ -17,6 +18,7 @@ class HomePage extends React.Component {
       searchKey: 'sydney',
       cacheData: []
     };
+    this.handleSearchDebounce = throttle(this.handleSearchPress, 1000);
   }
 
   // eslint-disable-next-line react/sort-comp
@@ -28,10 +30,9 @@ class HomePage extends React.Component {
       if (cacheData[q]) {
         response = cacheData[q];
       } else {
-
         response = await getCities(q);
-
       }
+
       this.setState({cityData: response.data.data, error: false, searchKey: q});
     } catch {
       this.setState({error: true, isLoaded: true});
@@ -51,7 +52,6 @@ class HomePage extends React.Component {
     } catch {
       this.setState({error: true, isLoaded: true});
     }
-
   }
 
   render() {
@@ -67,7 +67,7 @@ class HomePage extends React.Component {
     return (
       <div className="weather">
         <Header
-          searchPressCallback={this.handleSearchPress}
+          searchPressCallback={this.handleSearchDebounce}
           selectCountry={this.selectCountry}
           data={cityData}
         />
