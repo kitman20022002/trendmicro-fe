@@ -3,12 +3,19 @@ import ForecastItem from "./ForecastItem";
 
 import "./Forecast.css"
 
-const Forecast = (props) => {
+
+interface IForecastProps {
+  data: {
+    consolidated_weather: []
+  }
+}
+
+const Forecast = (props: IForecastProps) => {
   const {data} = props;
 
   return (
     <section className="card__forecasts__container flex space-between flex-warp">
-      {data.consolidated_weather.map((item) =>
+      {data.consolidated_weather.map((item: any) =>
         <ForecastItem key={item.id} data={item} />
       )}
     </section>

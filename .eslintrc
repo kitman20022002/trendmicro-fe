@@ -7,13 +7,24 @@
   },
   "extends": [
     "airbnb",
-    "prettier"
+    "prettier",
+    "plugin:import/typescript"
   ],
   "env": {
     "browser": true,
     "jest": true
   },
   "rules": {
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
     "max-len": [
       "error",
       {

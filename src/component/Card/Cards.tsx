@@ -1,8 +1,15 @@
-import React from "react";
+import * as React from "react";
 import Forecast from "../Forecast/Forecast";
 import './Card.css';
 
-function Cards(props) {
+
+interface ICardProps {
+  data: {
+    consolidated_weather: []
+  }
+}
+
+function Cards(props: ICardProps) {
   const {data} = props;
 
   return (

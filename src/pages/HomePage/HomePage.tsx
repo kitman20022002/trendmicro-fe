@@ -1,39 +1,58 @@
 import React from 'react';
 import './HomePage.css'
 import {debounce} from "lodash";
+import {RouteComponentProps} from 'react-router-dom'
 import Header from "../../component/Header/Header";
 import Loader from "../../component/Loader/Loader";
 import Cards from "../../component/Card/Cards";
 import {getCities, getWeather} from "../../api/weatherapi";
 
+interface IHomeProps extends RouteComponentProps<{ title: string }> {
 
-class HomePage extends React.Component {
-  constructor(props) {
+}
+
+
+interface IWeatherData {
+  data: [],
+}
+
+interface IHomeState {
+  isLoaded: boolean,
+  cityData: [],
+  weatherData: IWeatherData[],
+  error: boolean,
+  cacheData: any,
+}
+
+class HomePage extends React.Component<IHomeProps, IHomeState> {
+  // trying to make private but having eslint error
+  handleSearchDebounce: Function;
+
+  constructor(props: IHomeProps) {
     super(props);
     this.state = {
       isLoaded: false,
       cityData: [],
       weatherData: [],
       error: false,
-      searchKey: 'sydney',
-      cacheData: []
+      cacheData: [],
     };
-    this.handleSearchDebounce = debounce(this.handleSearchPress, 1000);
+    this.handleSearchDebounce = debounce(this.handleSearchPress, 300);
   }
 
   // eslint-disable-next-line react/sort-comp
-  handleSearchPress = async (e) => {
+  handleSearchPress = async (e: React.ChangeEvent<HTMLInputElement>) => {
     try {
       const {cacheData} = this.state;
       const q = e.target.value.toLowerCase();
       let response;
       if (cacheData[q]) {
-        response = cacheData[q];
+        response = cacheData[q]
       } else {
         response = await getCities(q);
+        cacheData[q] = response;
       }
-
-      this.setState({cityData: response.data.data, error: false, searchKey: q});
+      this.setState({cityData: response.data.data, error: false, cacheData});
     } catch {
       this.setState({error: true, isLoaded: true});
     }
@@ -43,7 +62,7 @@ class HomePage extends React.Component {
     // GEO Location Logic here
   }
 
-  selectCountry = async (cityID) => {
+  selectCountry = async (cityID: number) => {
     this.setState({isLoaded: false})
     let result;
     try {
@@ -55,13 +74,9 @@ class HomePage extends React.Component {
   }
 
   render() {
-    const {cityData, weatherData, isLoaded, searchKey, error} = this.state;
+    const {cityData, weatherData, isLoaded, error} = this.state;
     const showCard = error ? <p className="error">SERVER ERROR</p> : (
-      <Cards
-        data={weatherData}
-        isLoaded={isLoaded}
-        searchKey={searchKey}
-      />
+      <Cards data={weatherData} />
     );
 
     return (

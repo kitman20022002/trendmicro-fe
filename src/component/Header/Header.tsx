@@ -2,15 +2,20 @@ import React from 'react';
 import './Header.css'
 import SearchInput from "../SearchInput/SearchInput";
 
+interface IHeaderProps {
+  searchPressCallback: any,
+  data: [],
+  selectCountry: (cityID: number) => Promise<void>,
+}
 
-class Header extends React.Component {
-  constructor(props) {
+class Header extends React.Component<IHeaderProps> {
+  constructor(props: IHeaderProps) {
     super(props);
     this.state = {};
   }
 
   render() {
-    const {searchPressCallback, content, disabled, errors,data,selectCountry} = this.props;
+    const {searchPressCallback, data, selectCountry} = this.props;
 
     return (
       <header className="align--center fade-down">
@@ -18,13 +23,11 @@ class Header extends React.Component {
           <div className="search-box-container">
             <SearchInput
               onChange={searchPressCallback}
-              content={content}
-              disabled={disabled}
-              error={errors}
+              error=""
               data={data}
               selectCountry={selectCountry}
               data-testid="search-cities"
-              placeholder="Sydney"
+              placeholder="Search City"
               label="search"
             />
           </div>

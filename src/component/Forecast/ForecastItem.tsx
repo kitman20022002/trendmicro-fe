@@ -1,8 +1,7 @@
 import React from "react";
 import moment from "moment";
 
-
-const weatherMapping = {
+const weatherMapping : any = {
   'lr': 'https://www.metaweather.com/static/img/weather/lr.svg',
   'sn': 'https://www.metaweather.com/static/img/weather/sn.svg',
   'h': 'https://www.metaweather.com/static/img/weather/h.svg',
@@ -14,7 +13,7 @@ const weatherMapping = {
   'lc': 'https://www.metaweather.com/static/img/weather/lc.svg',
 };
 
-const dayMapping = {
+const dayMapping: any  = {
   0: 'Sunday',
   1: 'Monday',
   2: 'Tuesday',
@@ -24,7 +23,20 @@ const dayMapping = {
   6: 'Saturday',
 };
 
-const ForecastItem = (props) => {
+interface IForeCastItem {
+  data: {
+    id: string,
+    applicable_date: string,
+    weather_state_abbr: string,
+    min_temp: string,
+    max_temp: string,
+    weather_state_name: string,
+    wind_direction_compass: number,
+    wind_speed: string
+  }
+}
+
+const ForecastItem = (props: IForeCastItem) => {
   const {data} = props;
   return (
     <div className="forecast-item__container align--center" data-testid={data.id}>
@@ -50,7 +62,7 @@ const ForecastItem = (props) => {
             Wind
           </p>
           <p className="color--bold">
-            {`${data.wind_direction_compass} ${parseInt(data.wind_speed,10)} mph`}
+            {`${data.wind_direction_compass} ${parseInt(data.wind_speed, 10)} mph`}
           </p>
         </div>
       </div>

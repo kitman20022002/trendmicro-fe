@@ -7,11 +7,11 @@
 Didn't have time to do but however I aware of this issue
 
 - [ ] Use Sass  
-- [ ] Remove data-testid in production 
-- [ ] props validation (If use TypeScript it will solve the problem, but didn't have time)
+- [ ] Remove data-testid in production
 - [ ] Bonus: Use the geolocation browser API in order to find the user’s location, pre-populate the form and display the weather forecast when the page has loaded: 
       (didn't have time but | know how to do Geolocation.getCurrentPosition(), which then uses https://www.metaweather.com/api/location/search/?lattlong=36.96,-122.02 to get the city ) 
 
+- [x] TypeScript
 - [x] Use Debounce
 - [x] JSX if possible
 - [x] Use .env.example
