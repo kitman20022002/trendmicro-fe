@@ -6,3 +6,7 @@ export const getWeather = (city) =>
 
 export const getCities = (city) =>
   axios.get(`${apis.API_URL + apis.VERSION}/cities?city=${city}`);
+
+export const getCurrentLocation = (position) =>
+  // eslint-disable-next-line max-len
+  axios.get(`${apis.API_URL + apis.VERSION}/get-currently-city?latt=${position.coords.latitude}&long=${position.coords.longitude}`);

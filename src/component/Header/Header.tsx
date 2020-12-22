@@ -23,12 +23,10 @@ class Header extends React.Component<IHeaderProps> {
           <div className="search-box-container">
             <SearchInput
               onChange={searchPressCallback}
-              error=""
               data={data}
               selectCountry={selectCountry}
               data-testid="search-cities"
               placeholder="Search City"
-              label="search"
             />
           </div>
         </div>

@@ -4,9 +4,7 @@ import './Card.css';
 
 
 interface ICardProps {
-  data: {
-    consolidated_weather: []
-  }
+  data: any,
 }
 
 function Cards(props: ICardProps) {

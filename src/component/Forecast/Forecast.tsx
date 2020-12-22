@@ -3,11 +3,17 @@ import ForecastItem from "./ForecastItem";
 
 import "./Forecast.css"
 
+//
+// interface IForecastProps {
+//   data:any
+// }
+
+interface IWeatherData {
+  consolidated_weather: []
+}
 
 interface IForecastProps {
-  data: {
-    consolidated_weather: []
-  }
+  data: IWeatherData
 }
 
 const Forecast = (props: IForecastProps) => {
