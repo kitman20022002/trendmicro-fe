@@ -7,7 +7,6 @@
   },
   "extends": [
     "airbnb",
-    "prettier",
     "plugin:import/typescript"
   ],
   "env": {

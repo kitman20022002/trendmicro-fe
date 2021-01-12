@@ -1,6 +1,6 @@
 import React from 'react';
-import './Header.css'
-import SearchInput from "../SearchInput/SearchInput";
+import './Header.css';
+import SearchInput from '../SearchInput/SearchInput';
 
 interface IHeaderProps {
   searchPressCallback: any,
@@ -15,7 +15,7 @@ class Header extends React.Component<IHeaderProps> {
   }
 
   render() {
-    const {searchPressCallback, data, selectCountry} = this.props;
+    const { searchPressCallback, data, selectCountry } = this.props;
 
     return (
       <header className="align--center fade-down">

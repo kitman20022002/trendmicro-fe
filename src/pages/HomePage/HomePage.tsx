@@ -1,12 +1,12 @@
 import React from 'react';
-import './HomePage.css'
-import {debounce} from "lodash";
-import {RouteComponentProps} from 'react-router-dom'
-import Header from "../../component/Header/Header";
-import Loader from "../../component/Loader/Loader";
-import Cards from "../../component/Card/Cards";
-import {getCities, getCurrentLocation, getWeather} from "../../api/weatherapi";
-import {getErrorMessage} from "../../utils/GeoLocationHelper";
+import './HomePage.css';
+import { debounce } from 'lodash';
+import { RouteComponentProps } from 'react-router-dom';
+import Header from '../../component/Header/Header';
+import Loader from '../../component/Loader/Loader';
+import Cards from '../../component/Card/Cards';
+import { getCities, getCurrentLocation, getWeather } from '../../api/weatherapi';
+import { getErrorMessage } from '../../utils/GeoLocationHelper';
 
 interface IHomeProps extends RouteComponentProps<{ title: string }> {
 
@@ -37,42 +37,43 @@ class HomePage extends React.Component<IHomeProps, IHomeState> {
       weatherData: [],
       cacheData: [],
       errorMessage: '',
-      dataState: DataState.LOADING
+      dataState: DataState.LOADING,
     };
     this.handleSearchDebounce = debounce(this.handleSearchPress, 300);
   }
 
   componentDidMount() {
-    const {geolocation} = navigator;
+    const { geolocation } = navigator;
     if (geolocation) {
       geolocation.getCurrentPosition(
         this.getCityWeather,
-        (error) => this.setErrorMessage(getErrorMessage(error)));
+        (error) => this.setErrorMessage(getErrorMessage(error)),
+      );
     } else {
-      this.setErrorMessage("GEO Location API not available");
+      this.setErrorMessage('GEO Location API not available');
     }
   }
 
   setErrorMessage = (message: string): void => {
-    this.setState({dataState: DataState.ERROR, errorMessage: message});
+    this.setState({ dataState: DataState.ERROR, errorMessage: message });
   }
 
   setLoading = (): void => {
-    this.setState({dataState: DataState.LOADING});
+    this.setState({ dataState: DataState.LOADING });
   }
 
   handleSearchPress = async (e: React.ChangeEvent<HTMLInputElement>) => {
     try {
-      const {cacheData} = this.state;
+      const { cacheData } = this.state;
       const q = e.target.value.toLowerCase();
       let response;
       if (cacheData[q]) {
-        response = cacheData[q]
+        response = cacheData[q];
       } else {
         response = await getCities(q);
         cacheData[q] = response;
       }
-      this.setState({dataState: DataState.NORMAL, cityData: response.data.data, cacheData});
+      this.setState({ dataState: DataState.NORMAL, cityData: response.data.data, cacheData });
     } catch {
       this.setErrorMessage('Server Error');
     }
@@ -84,18 +85,17 @@ class HomePage extends React.Component<IHomeProps, IHomeState> {
       const result = await getCurrentLocation(position);
       const response = await getWeather(result.data.data[0].woeid);
       this.setState({
-          dataState: DataState.NORMAL,
-          cityData: response.data.data[0],
-          weatherData: response.data.data
-        }
-      );
+        dataState: DataState.NORMAL,
+        cityData: response.data.data[0],
+        weatherData: response.data.data,
+      });
     } catch {
       this.setErrorMessage('Server Error');
     }
   }
 
   getContent(state: DataState) {
-    const {weatherData, errorMessage} = this.state;
+    const { weatherData, errorMessage } = this.state;
     switch (state) {
       case DataState.ERROR:
         return <p className="error">{errorMessage}</p>;
@@ -112,14 +112,14 @@ class HomePage extends React.Component<IHomeProps, IHomeState> {
     this.setLoading();
     try {
       const result = await getWeather(cityID);
-      this.setState({dataState: DataState.NORMAL, weatherData: result.data.data})
+      this.setState({ dataState: DataState.NORMAL, weatherData: result.data.data });
     } catch {
       this.setErrorMessage('Server Error');
     }
   }
 
   render() {
-    const {cityData, dataState} = this.state;
+    const { cityData, dataState } = this.state;
 
     return (
       <div className="weather">

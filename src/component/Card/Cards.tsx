@@ -1,14 +1,13 @@
-import * as React from "react";
-import Forecast from "../Forecast/Forecast";
+import * as React from 'react';
+import Forecast from '../Forecast/Forecast';
 import './Card.css';
-
 
 interface ICardProps {
   data: any,
 }
 
 function Cards(props: ICardProps) {
-  const {data} = props;
+  const { data } = props;
 
   return (
     <main className="card__main fade-in">
@@ -16,7 +15,7 @@ function Cards(props: ICardProps) {
         {data ? <Forecast data={data} /> : <p data-testid="error-message">Error</p>}
       </div>
     </main>
-  )
+  );
 }
 
 export default Cards;

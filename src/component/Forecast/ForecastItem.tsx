@@ -1,19 +1,19 @@
-import React from "react";
-import moment from "moment";
+import React from 'react';
+import moment from 'moment';
 
 const weatherMapping : any = {
-  'lr': 'https://www.metaweather.com/static/img/weather/lr.svg',
-  'sn': 'https://www.metaweather.com/static/img/weather/sn.svg',
-  'h': 'https://www.metaweather.com/static/img/weather/h.svg',
-  't': 'https://www.metaweather.com/static/img/weather/t.svg',
-  'hr': 'https://www.metaweather.com/static/img/weather/hr.svg',
-  'hc': 'https://www.metaweather.com/static/img/weather/hc.svg',
-  's': 'https://www.metaweather.com/static/img/weather/s.svg',
-  'c': 'https://www.metaweather.com/static/img/weather/c.svg',
-  'lc': 'https://www.metaweather.com/static/img/weather/lc.svg',
+  lr: 'https://www.metaweather.com/static/img/weather/lr.svg',
+  sn: 'https://www.metaweather.com/static/img/weather/sn.svg',
+  h: 'https://www.metaweather.com/static/img/weather/h.svg',
+  t: 'https://www.metaweather.com/static/img/weather/t.svg',
+  hr: 'https://www.metaweather.com/static/img/weather/hr.svg',
+  hc: 'https://www.metaweather.com/static/img/weather/hc.svg',
+  s: 'https://www.metaweather.com/static/img/weather/s.svg',
+  c: 'https://www.metaweather.com/static/img/weather/c.svg',
+  lc: 'https://www.metaweather.com/static/img/weather/lc.svg',
 };
 
-const dayMapping: any  = {
+const dayMapping: any = {
   0: 'Sunday',
   1: 'Monday',
   2: 'Tuesday',
@@ -37,7 +37,7 @@ interface IForeCastItem {
 }
 
 const ForecastItem = (props: IForeCastItem) => {
-  const {data} = props;
+  const { data } = props;
   return (
     <div className="forecast-item__container align--center" data-testid={data.id}>
       <h2 className="day__text">
