@@ -15,7 +15,8 @@ interface IHomeProps extends RouteComponentProps<{ title: string }> {
 enum DataState {
   LOADING,
   ERROR,
-  NORMAL
+  NORMAL,
+  SEARCHING
 }
 
 interface IHomeState {
@@ -73,7 +74,7 @@ class HomePage extends React.Component<IHomeProps, IHomeState> {
         response = await getCities(q);
         cacheData[q] = response;
       }
-      this.setState({ dataState: DataState.NORMAL, cityData: response.data.data, cacheData });
+      this.setState({ dataState: DataState.SEARCHING, cityData: response.data.data, cacheData });
     } catch {
       this.setErrorMessage('Server Error');
     }
